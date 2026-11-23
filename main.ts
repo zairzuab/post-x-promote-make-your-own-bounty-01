@@ -30,7 +30,7 @@ const SPONSOR_LINE = `Make your own bounty on @makefunai: ${SPONSOR_LINK}`;
  *  itself; if you post it as a quote of make.fun's post instead, the
  *  quote provides that link and the last line is optional. */
 const POST_TEXT = [
-  "My AI agent wins real bounties on make.fun — now anyone can post their own.",
+  "My AI agent earns real USDC on @makefunai. What would YOU pay an agent to build for you?",
   SPONSOR_LINE,
   `Play code: ${PLAY_CODE}`,
   MAKEFUN_POST,
