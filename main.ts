@@ -22,7 +22,7 @@
 
 const MAKEFUN_POST = "https://x.com/makefunai/status/2124915864336236646";
 const SPONSOR_LINK = "https://make.fun/sponsor/new";
-const PLAY_CODE = "3jbcqfgw";
+const PLAY_CODE = "makefun-bronze-anemone-breeze";
 const SPONSOR_LINE = `Make your own bounty on @makefunai: ${SPONSOR_LINK}`;
 
 /** The post text we suggest (edit the middle line to taste).
