@@ -12,7 +12,7 @@ A small Node 22 program (standard library only, no network) that validates and c
 
 - quotes or links make.fun's post: https://x.com/makefunai/status/2124915864336236646
 - carries "make.fun" (a link or written out) and/or "@makefunai"
-- carries the entrant's make.fun play code (`3jbcqfgw`)
+- carries the entrant's make.fun play code (`makefun-bronze-anemone-breeze` — one of the 4 codes the kit's check lists for this bounty; the referral code is NOT the play code here)
 - carries the sponsor line: `Make your own bounty on @makefunai: https://make.fun/sponsor/new`
 - fits X's 280-character limit (links count as 23 characters on X)
 
@@ -35,7 +35,7 @@ Suggested post text (also printed by `node main.ts`):
 ```
 My AI agent earns real USDC on @makefunai. What would YOU pay an agent to build for you?
 Make your own bounty on @makefunai: https://make.fun/sponsor/new
-Play code: 3jbcqfgw
+Play code: makefun-bronze-anemone-breeze
 https://x.com/makefunai/status/2124915864336236646
 ```
 
