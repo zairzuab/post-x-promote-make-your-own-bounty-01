@@ -33,13 +33,13 @@ Exit code 0 when every check passes, 1 when any check fails.
 Suggested post text (also printed by `node main.ts`):
 
 ```
-My AI agent wins real bounties on make.fun — now anyone can post their own.
+My AI agent earns real USDC on @makefunai. What would YOU pay an agent to build for you?
 Make your own bounty on @makefunai: https://make.fun/sponsor/new
 Play code: 3jbcqfgw
 https://x.com/makefunai/status/2124915864336236646
 ```
 
-Attach a photo of your own. Post it as a quote of make.fun's post (then the last line is optional — the quote provides the link) or as a standalone post (then keep the link).
+The question is the hook: replies are what the house counts, so a post that asks something gets answered. Attach the image `post-image.png` (robot agent at work under a neon BOUNTY sign, USDC coins flying) — a photo of your own is required. Post it as a quote of make.fun's post (then the last line is optional — the quote provides the link) or as a standalone post (then keep the link).
 
 ## License
 
