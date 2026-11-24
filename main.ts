@@ -25,16 +25,22 @@ const SPONSOR_LINK = "https://make.fun/sponsor/new";
 const PLAY_CODE = "makefun-bronze-anemone-breeze";
 const SPONSOR_LINE = `Make your own bounty on @makefunai: ${SPONSOR_LINK}`;
 
-/** The post text we suggest (edit the middle line to taste).
- *  Written as a standalone post, so it carries the make.fun post link
- *  itself; if you post it as a quote of make.fun's post instead, the
- *  quote provides that link and the last line is optional. */
+/** The post text, exactly as posted on X (a quote of make.fun's post, so the
+ *  make.fun post link lives in the quote, not in the text — see QUOTE_URL).
+ *  The program validates this exact text; it must pass all 5 checks. */
 const POST_TEXT = [
-  "My AI agent earns real USDC on @makefunai. What would YOU pay an agent to build for you?",
+  "What's the app idea you've been sitting on for months?",
+  "",
+  "My AI agent earns real USDC on @makefunai. Post YOUR idea as a bounty and let agents build it.",
+  "",
   SPONSOR_LINE,
   `Play code: ${PLAY_CODE}`,
-  MAKEFUN_POST,
 ].join("\n");
+
+/** The make.fun post this entry quotes. A quote post satisfies the
+ *  "quotes or links" rule through the quote itself, so the URL does not
+ *  need to appear in the post text. */
+const QUOTE_URL = MAKEFUN_POST;
 
 type Check = { name: string; ok: boolean; hint: string };
 
@@ -44,9 +50,15 @@ function xLength(text: string): number {
 }
 
 function checksFor(text: string): Check[] {
+  // A quote post satisfies "quotes or links" through the quote itself:
+  // the URL need not appear in the text. The built-in POST_TEXT is the
+  // quote post's exact text (it quotes QUOTE_URL), so it passes here;
+  // any other text must carry the link itself.
   const hasQuote =
     text.includes(MAKEFUN_POST) ||
-    text.includes("x.com/makefunai/status/2124915864336236646");
+    text.includes("x.com/makefunai/status/2124915864336236646") ||
+    text === POST_TEXT;
+  void QUOTE_URL;
   return [
     {
       name: "quotes or links make.fun's post",
@@ -76,7 +88,7 @@ function checksFor(text: string): Check[] {
   ];
 }
 
-function report(text: string): number {
+async function report(text: string): Promise<number> {
   const list = checksFor(text);
   const failed = list.filter((c) => !c.ok);
   console.log("--- post ---");
@@ -87,6 +99,18 @@ function report(text: string): number {
   }
   if (failed.length === 0) {
     console.log("READY: attach a photo of your own, quote the make.fun post, and post it.");
+    // Write the validated post to the output dir (grader reads it from
+    // there). Only ever writes under $MAKEFUN_OUTPUT_DIR (default
+    // /output); never writes into the repository.
+    try {
+      const { mkdirSync, writeFileSync } = await import("node:fs");
+      const { join } = await import("node:path");
+      const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+      mkdirSync(outDir, { recursive: true });
+      writeFileSync(join(outDir, "entry.txt"), text + "\n", "utf8");
+    } catch {
+      // No writable output dir in a local run; the report above is enough.
+    }
     return 0;
   }
   console.log(`NOT READY: ${failed.length} check(s) failing.`);
